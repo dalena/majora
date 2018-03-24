@@ -1,0 +1,220 @@
+body {
+    background-color: #000;
+    margin: 0;
+    /* overflow: hidden; */
+    color: white;
+    font-family: 'Libre Baskerville', serif;
+}
+
+h1 {
+    font-weight: 900;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Inknut Antiqua', serif;
+}
+
+a {
+    color: white;
+    text-decoration: underline;
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: 400;
+}
+
+.center {
+    text-align: center;
+}
+
+.auto-margin {
+    margin: auto;
+}
+
+.opacity-zero {
+    opacity: 0;
+    z-index: -1;
+}
+
+.opacity-full {
+    opacity: 1;
+    z-index: 9999;
+}
+
+.animated {
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+}
+
+.anim-fast {
+    transition-duration: 0.25s;
+}
+
+.anim-1 {
+    transition-duration: 5s;
+}
+
+.vertical-center {
+    min-height: 100%;
+    /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh;
+    /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+}
+
+.italic {
+    font-style: italic;
+}
+
+#title-1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -100%);
+    /* line-height: 35px; */
+    /* width: 100%; */
+}
+
+#oscilloscope {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#title-2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0);
+    /* font-size: 8.3vw; */
+}
+
+#main_canvas_container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+div#prelod_static_path {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 395px;
+    height: 2px;
+    margin-left: -197px;
+    margin-top: 0;
+}
+
+div#prelod_dynamic_path {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: white;
+    border-radius: 5px;
+    opacity: .5;
+}
+
+div#preloader_cont {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    visibility: hidden
+}
+
+div#form-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.form-control {
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: 900;
+    border-radius: .1rem;
+    background: black;
+    color: white;
+    line-height: 40px;
+    height: 50px;
+    padding: 0px 10px;
+    box-shadow: none !important;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: white;
+    outline: 0;
+    box-shadow: 0;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 50px;
+}
+
+.btn {
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: 900;
+    border-radius: .1rem;
+    text-transform: uppercase;
+    background: white;
+    color: black;
+    height: 50px;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    color: white;
+    background: black;
+    border: 1px solid white;
+}
+
+#footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 20px 0px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#footer>.btn {
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: 900;
+    border-radius: .1rem;
+    text-transform: uppercase;
+    color: white;
+    background: rgba(0, 0, 0, 0.336);
+    border: 0;
+    height: 30px;
+}
+
+#footer>.btn>a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: 900;
+}
+
+#footer>.btn>a:hover {
+    color: #d9e2ff;
+}
+
+#footer>.btn:hover {
+    background: white;
+    background: rgba(0, 0, 0, 0.336);
+    text-decoration: underline;
+}
