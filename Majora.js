@@ -800,7 +800,12 @@ $(document).ready(function () {
                     success: function (data) {
                         if (data.result != "success") {
                             loggy("app", "Form submission failed.");
+                            $("#form-message").text(data.msg);
+                            $("#form-message").css('color', '#dc3545');
+                            console.log(data);
                         } else {
+                            $("#form-message").text(data.msg);
+                            $("#form-message").css('color', '#28a745');
                             loggy("app", "Form submission successful.");
                             majora.formTrigger("hide");
                             //formSuccess();

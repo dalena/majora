@@ -68,15 +68,22 @@
           var charCode = (evt.which) ? evt.which : event.keyCode
           if (charCode > 31 && (charCode < 48 || charCode > 57))
             return false;
+          if (evt.target.value.length == evt.target.maxLength)
+            return false;
           return true;
         }
       </script>
       <div class="row auto-margin">
         <div class="col-md-12 mt-5 mb-5">
-          <h5>To hear your poem, enter the following information, including your birthday.</h5>
+          <h5 id="form-message" class="animated anim-fast">To hear your poem, enter the following information, including your birthday.</h5>
           <br>
           <form class="needs-validation" action="https://hiradsab.us12.list-manage.com/subscribe/post-json?u=dfd02f746239cbeb66c6c7e5f&amp;id=48edb1d81b&amp;c=?"
             method="post" novalidate>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <input type="text" name="NAME" class="form-control" placeholder="Name" value="" required>
+              </div>
+            </div>
             <div class="form-row">
               <div class="col-md-12 mb-3">
                 <input type="email" name="EMAIL" class="form-control" placeholder="Email" value="" required>
@@ -84,7 +91,7 @@
             </div>
             <div class="form-row">
               <div class="col-md-4 mb-3">
-                <input type="number" value="" placeholder="dd" size="2" maxlength="2" name="BDAY[day]" class="form-control" onkeypress="return isNumberKey(event)"
+                <input type="number" value="" placeholder="dd" size="2" maxlength="2" name="BDAY[day]" class="form-control auto-bounce" onkeypress="return isNumberKey(event)"
                   min="0" max="31" required>
               </div>
               <div class="col-md-4 mb-3">
@@ -98,9 +105,9 @@
             </div>
 
             <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <select id="countries" name="COUNTRY" class="form-control"> </select>
-                  </div>
+              <div class="col-md-6 mb-3">
+                <select id="countries" name="COUNTRY" class="form-control"> </select>
+              </div>
               <div class="col-md-6 mb-3">
                 <input type="tel" name="CELL" class="form-control" placeholder="Cellphone" value="" required>
               </div>
@@ -111,7 +118,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text inputGroupPrepend" id="inputGroupPrepend">@</span>
                   </div>
-                  <input type="tel" name="FBID" class="form-control" placeholder="Facebook ID" value="">
+                  <input type="text" name="FBID" class="form-control" placeholder="Facebook ID" value="">
                 </div>
               </div>
               <div class="col-md-6 mb-3">
@@ -119,7 +126,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text inputGroupPrepend" id="inputGroupPrepend">@</span>
                   </div>
-                  <input type="tel" name="IGID" class="form-control" placeholder="Instagram ID" value="">
+                  <input type="text" name="IGID" class="form-control" placeholder="Instagram ID" value="">
                 </div>
               </div>
             </div>
@@ -127,10 +134,11 @@
               <div class="col-md-12 mb-3">
                 <button class="btn btn-block" type="submit">Send</button>
                 <h6 class="mt-5" style="text-aling:center;font-family: sans-serif;max-width: 90%;margin: auto;background: transparent;">
-                    <sup>This information will also be used to send you personalized content, including newsletters and location-based
-                      tour dates. We respect your privacy and do not tolerate spam and will never sell, rent, lease or give away
-                      your information to any third party. Nor will we send you unsolicited email. <br>You can unsubsribe anytime.</sup>
-                  </h6>
+                  <sup>This information will also be used to send you personalized content, including newsletters and location-based
+                    tour dates. We respect your privacy and do not tolerate spam and will never sell, rent, lease or give
+                    away your information to any third party. Nor will we send you unsolicited email.
+                    <br>You can unsubsribe anytime.</sup>
+                </h6>
               </div>
             </div>
           </form>
