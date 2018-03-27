@@ -135,7 +135,7 @@ div#preloader_cont {
     visibility: hidden
 }
 
-div#form-container {
+.fluid-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -164,6 +164,16 @@ div#form-container {
 
 select.form-control:not([size]):not([multiple]) {
     height: 50px;
+}
+
+/* .form-row>.col, .form-row>[class*=col-] {
+    padding-right: 0;
+    padding-left: 0;
+} */
+
+.inputGroupPrepend {
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: bold;
 }
 
 .btn {
@@ -218,3 +228,4 @@ select.form-control:not([size]):not([multiple]) {
     background: rgba(0, 0, 0, 0.336);
     text-decoration: underline;
 }
+
