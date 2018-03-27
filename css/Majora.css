@@ -193,6 +193,18 @@ select.form-control:not([size]):not([multiple]) {
     border: 1px solid white;
 }
 
+.skip {
+    background: black;
+    color: white;
+    border: 0px solid;
+}
+
+.skip:hover {
+    color: black;
+    background: white;
+    border: 0px solid;
+}
+
 #footer {
     position: absolute;
     width: 100%;
@@ -207,7 +219,7 @@ select.form-control:not([size]):not([multiple]) {
     border-radius: .1rem;
     text-transform: uppercase;
     color: white;
-    background: rgba(0, 0, 0, 0.336);
+    background: transparent;
     border: 0;
     height: 30px;
 }
@@ -220,12 +232,11 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 #footer>.btn>a:hover {
-    color: #d9e2ff;
+    color: white;
 }
 
 #footer>.btn:hover {
     background: white;
-    background: rgba(0, 0, 0, 0.336);
+    background: transparent;
     text-decoration: underline;
 }
-

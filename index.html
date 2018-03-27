@@ -61,7 +61,7 @@
   </div>
 
 
-  <div id="form-container" class="fluid-container center opacity-zero animated anim-1">
+  <div id="form-container" class="fluid-container center opacity-zero animated anim-fast">
     <div class="container vertical-center">
       <script>
         function isNumberKey(evt) {
@@ -133,6 +133,9 @@
             <div class="form-row">
               <div class="col-md-12 mb-3">
                 <button class="btn btn-block" type="submit">Send</button>
+              </div>
+              <div class="col-md-12 mb-3">
+                <button class="btn btn-block skip" id="skip-button" onclick='majora.formTrigger("hide");'>Skip</button>
                 <h6 class="mt-5" style="text-aling:center;font-family: sans-serif;max-width: 90%;margin: auto;background: transparent;">
                   <sup>This information will also be used to send you personalized content, including newsletters and location-based
                     tour dates. We respect your privacy and do not tolerate spam and will never sell, rent, lease or give
