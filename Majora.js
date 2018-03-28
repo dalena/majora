@@ -480,6 +480,11 @@ b4w.register("Majora_main", function (exports, require) {
     }
 
     function begin() {
+        if(!flags.mobile){
+            var canvas_elem = m.cont.get_canvas();
+            m.mouse.request_pointerlock(canvas_elem, null, null, null, null, rot_cb);
+        }
+
         $("#welcome-container").removeClass('opacity-full');
         $("#welcome-container").addClass('opacity-zero');
 
@@ -797,6 +802,7 @@ b4w.register("Majora_main", function (exports, require) {
     function formTrigger(flag) {
         if (flag == "show") {
             loggy("app", "Form displayed.");
+            document.exitPointerLock();
             $('#form-container').show();
             $('#form-container').removeClass('opacity-zero');
             $('#form-container').addClass('opacity-full');
