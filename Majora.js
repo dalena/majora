@@ -536,7 +536,7 @@ b4w.register("Majora_main", function (exports, require) {
     }
 
     function toggleScenes() {
-        animOutroFadeIn();
+        // animOutroFadeIn();
         if (flags.allowToggle) {
             loggy("app", "Scene toggled.")
             if (flags.playing == "outro")
