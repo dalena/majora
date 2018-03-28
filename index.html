@@ -60,6 +60,86 @@
     </div>
   </div>
 
+  <div id="welcome-container" class="fluid-container vertical-center center opacity-zero animated anim-2sec" style="display:none;">
+    <div class="container">
+      <div id="tour-1" class="row">
+        <div class="col-md-8 offset-md-2">
+          <h4>Majora welcomes you!</h4>
+          <h6>This is a web-based interactive audio-visual experience. For optimal experience ensure you are using the latest
+            version of
+            <a href="https://www.google.com/chrome/">Chrome</a>.
+          </h6>
+          <button class="btn tour-button mt-5" onclick='$("#tour-1").hide(); $("#tour-2").show();'>Next</button>
+        </div>
+      </div>
+
+      <div id="tour-2" class="row" style="display:none;">
+        <div class="col-md-8 offset-md-2">
+          <h4></h4>
+          <h6>You can leave your information before receiving a personal poem.</h6>
+          <button class="btn tour-button mt-5" onclick='$("#tour-2").hide(); $("#tour-3").show();'>Next</button>
+        </div>
+      </div>
+
+      <div id="tour-3" class="row" style="display:none;">
+        <div class="col-md-8 offset-md-2">
+          <h4></h4>
+          <h6>We respect your privacy, and this information will only be used to send you related updates and news.
+          </h6>
+          <button class="btn tour-button mt-5" onclick='$("#tour-3").hide(); $("#tour-4").show();'>Next</button>
+        </div>
+      </div>
+
+      <div id="tour-4" class="row" style="display:none;">
+        <div class="col-md-4 offset-md-2 mb-5">
+          <h5>Desktop</h5>
+          <h6>
+            <strong>
+              <em>Scroll</em>
+            </strong> to zoom.</h6>
+          <h6>
+            <strong>
+              <em>Click</em>
+            </strong> to lock camera to cursor.</h6>
+          <h6>
+            <strong>
+              <kbd>W</kbd>
+              <kbd>A</kbd>
+              <kbd>S</kbd>
+              <kbd>D</kbd>
+              <em></em>&amp;</em>
+              <kbd>←</kbd>
+              <kbd>↑</kbd>
+              <kbd>↓</kbd>
+              <kbd>→</kbd>
+            </strong>
+          </h6>
+        </div>
+        <div class="col-md-4 mb-5">
+          <h5>Mobile</h5>
+          <h6>
+            <strong>
+              <em>Pinch</em>
+            </strong> to zoom.
+          </h6>
+          <h6>
+            <strong>
+              <em>Drag</em>
+            </strong> to calibrate camera.
+          </h6>
+          <h6>
+            <strong>
+              <em>Move device</em>
+            </strong> to explore the scene.
+          </h6>
+        </div>
+        <div class="col-md-12">
+          <button class="btn tour-button" onclick='majora.begin();'>Begin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="form-container" class="fluid-container center opacity-zero animated anim-1">
     <div class="container vertical-center">
       <script>
@@ -70,6 +150,10 @@
           if (evt.target.value.length == evt.target.maxLength)
             return false;
           return true;
+        }
+
+        function clearInput(evt) {
+          evt.target.value = "";
         }
       </script>
       <div class="row auto-margin">
@@ -91,15 +175,15 @@
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <input type="number" value="" placeholder="dd" size="2" maxlength="2" name="BDAY[day]" class="form-control auto-bounce" onkeypress="return isNumberKey(event)"
-                  min="0" max="31" required>
+                  onfocus="clearInput(event)" min="0" max="31" required>
               </div>
               <div class="col-md-4 mb-3">
                 <input type="number" pattern="[0-9]*" value="" placeholder="mm" size="2" maxlength="2" name="BDAY[month]" class="form-control"
-                  onkeypress="return isNumberKey(event)" min="01" max="12" required>
+                  onkeypress="return isNumberKey(event)" onfocus="clearInput(event)" min="01" max="12" required>
               </div>
               <div class="col-md-4 mb-3">
                 <input type="number" pattern="[0-9]*" value="" placeholder="yyyy" size="4" maxlength="4" name="BDAY[year]" class="form-control"
-                  onkeypress="return isNumberKey(event)" min="1990" max="2018" required>
+                  onkeypress="return isNumberKey(event)" onfocus="clearInput(event)" min="1990" max="2018" required>
               </div>
             </div>
 
@@ -147,13 +231,20 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div id="footer" class="opacity-zero animated anim-1 center">
-    <h5>Click or tap on the screen to change the scenes.</h5>
-    <button class="btn btn-primary">
-      <a class="animated anim-fast" href="http://sevdaliza.com/">Return to Main Website</a>
+    <h6>
+      <strong>
+        <em>Click or tap</em>
+      </strong> on the screen to change the scenes.
+    </h6>
+    <button class="btn tour-button">
+      <a class="animated anim-fast" href="http://sevdaliza.com/">
+        <small>
+          Return to Main Website
+        </small>
+      </a>
     </button>
   </div>
 </body>

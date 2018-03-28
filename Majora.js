@@ -383,7 +383,11 @@ b4w.register("Majora_main", function (exports, require) {
     var objs = {
         cam: undefined,
         light_point: undefined,
-        light_point_back: undefined
+        light_point_back: undefined,
+        light_point_back_1: undefined,
+        light_point_back_2: undefined,
+        light_point_back_3: undefined,
+        light_point_back_4: undefined
     };
     exports.objs = objs;
 
@@ -411,7 +415,8 @@ b4w.register("Majora_main", function (exports, require) {
             flags.isPageVisible = !m.main.is_paused();
 
             if (flags.isPageVisible && typeof snd.bg == 'object') {
-                snd.bg.play();
+                if (snd.bg.playing)
+                    snd.bg.play();
             }
             if (flags.isPageVisible && typeof snd.intro == 'object') {
                 if (snd.introPlay && !snd.introEnd)
@@ -440,10 +445,25 @@ b4w.register("Majora_main", function (exports, require) {
         objs.cam = m.scenes.get_object_by_name("camera");
         objs.light_point = m.scenes.get_object_by_name("light_point");
         objs.light_point_back = m.scenes.get_object_by_name("light_point_back");
+        objs.light_point_back_1 = m.scenes.get_object_by_name("light_point_back.001");
+        objs.light_point_back_2 = m.scenes.get_object_by_name("light_point_back.002");
+        objs.light_point_back_3 = m.scenes.get_object_by_name("light_point_back.003");
+        objs.light_point_back_4 = m.scenes.get_object_by_name("light_point_back.004");
         // m.anim.apply(objs.light_point, "on", 0);
         // m.anim.play(objs.light_point, null, 0);
 
-        registerMouse();
+        var canvas_elem = m.cont.get_canvas();
+        if (!flags.mobile) {
+            registerMouse();
+
+            canvas_elem.addEventListener("mouseup", function (e) {
+                m.mouse.request_pointerlock(canvas_elem, null, null, null, null, rot_cb);
+            }, false);
+
+            m.mouse.set_plock_smooth_factor(5);
+        } else {
+            canvas_elem.addEventListener("touchend", toggleScenes, false);
+        }
 
         // camera = m.scene.get_active_camera();
 
@@ -452,14 +472,20 @@ b4w.register("Majora_main", function (exports, require) {
         m.app.enable_camera_controls();
         m.gryo.enable_camera_rotation();
 
-        var canvas_elem = m.cont.get_canvas();
-        canvas_elem.addEventListener("mouseup", function (e) {
-            m.mouse.request_pointerlock(canvas_elem, null, null, null, null, rot_cb);
-        }, false);
-        m.mouse.set_plock_smooth_factor(5);
+
+
+        $("#welcome-container").show();
+        $("#welcome-container").removeClass('opacity-zero');
+        $("#welcome-container").addClass('opacity-full');
+    }
+
+    function begin() {
+        $("#welcome-container").removeClass('opacity-full');
+        $("#welcome-container").addClass('opacity-zero');
 
         // If success for load, play the INTRO sound
         m.time.set_timeout(function () {
+            $("#welcome-container").remove();
             animIntroFadeIn();
             m.cam.rotate_camera(majora.objs.cam, 0, 0, true)
         }, 2000)
@@ -468,6 +494,8 @@ b4w.register("Majora_main", function (exports, require) {
             audioIntroStart();
         }, 6000);
     }
+
+    exports.begin = begin;
 
     var camera_smooth_fact = 2;
     var camera_rot_fact = 5;
@@ -487,6 +515,7 @@ b4w.register("Majora_main", function (exports, require) {
         }
 
         function cb(obj, id, pulse, param) {
+            // console.log(pulse)
             if (pulse == 1) {
                 toggleScenes()
             }
@@ -504,6 +533,7 @@ b4w.register("Majora_main", function (exports, require) {
     }
 
     function toggleScenes() {
+        // animOutroFadeIn();
         if (flags.allowToggle) {
             loggy("app", "Scene toggled.")
             if (flags.playing == "outro")
@@ -572,6 +602,8 @@ b4w.register("Majora_main", function (exports, require) {
 
     function formSubmitted() {
         timeouts.audioIntroEnd = m.time.set_timeout(function () {
+            $('#form-container').remove();
+
             animOutroFadeIn();
 
             timeouts.audioIntroEnd2 = m.time.set_timeout(function () {
@@ -598,10 +630,9 @@ b4w.register("Majora_main", function (exports, require) {
     }
 
     function setDOF(bool) {
-        if (!flags.mobile)
-            m.scenes.set_dof_params({
-                dof_on: bool
-            });
+        m.scenes.set_dof_params({
+            dof_on: bool
+        });
     }
 
     function setGodRays(opts) {
@@ -620,11 +651,19 @@ b4w.register("Majora_main", function (exports, require) {
     function setLights(opts) {
         m.time.animate(opts.from, opts.to, opts.duration, function (v) {
             m.light.set_light_energy(objs.light_point, v);
-            if (opts.both)
+            if (opts.both) {
                 m.light.set_light_energy(objs.light_point_back, v);
-            else
+                m.light.set_light_energy(objs.light_point_back_1, v);
+                m.light.set_light_energy(objs.light_point_back_2, v);
+                m.light.set_light_energy(objs.light_point_back_3, v);
+                m.light.set_light_energy(objs.light_point_back_4, v);
+            } else {
                 m.light.set_light_energy(objs.light_point_back, 0);
-
+                m.light.set_light_energy(objs.light_point_back_1, 0);
+                m.light.set_light_energy(objs.light_point_back_2, 0);
+                m.light.set_light_energy(objs.light_point_back_3, 0);
+                m.light.set_light_energy(objs.light_point_back_4, 0);
+            }
         })
     }
 
@@ -754,6 +793,7 @@ b4w.register("Majora_main", function (exports, require) {
     function formTrigger(flag) {
         if (flag == "show") {
             loggy("app", "Form displayed.");
+            $('#form-container').show();
             $('#form-container').removeClass('opacity-zero');
             $('#form-container').addClass('opacity-full');
         } else if (flag == "hide") {
@@ -802,7 +842,7 @@ $(document).ready(function () {
                             loggy("app", "Form submission failed.");
                             $("#form-message").text(data.msg);
                             $("#form-message").css('color', '#dc3545');
-                            console.log(data);
+                            // console.log(data);
                         } else {
                             $("#form-message").text(data.msg);
                             $("#form-message").css('color', '#28a745');
@@ -818,4 +858,7 @@ $(document).ready(function () {
             form.classList.add('was-validated');
         }, false);
     });
+
+
+    $('#form-container').hide();
 });

@@ -54,6 +54,10 @@ a {
     transition-duration: 0.25s;
 }
 
+.anim-2sec {
+    transition-duration: 2s;
+}
+
 .anim-1 {
     transition-duration: 5s;
 }
@@ -210,18 +214,7 @@ select.form-control:not([size]):not([multiple]) {
     width: 100%;
     bottom: 0;
     padding: 20px 0px;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-#footer>.btn {
-    font-family: 'Inknut Antiqua', serif;
-    font-weight: 900;
-    border-radius: .1rem;
-    text-transform: uppercase;
-    color: white;
     background: transparent;
-    border: 0;
-    height: 30px;
 }
 
 #footer>.btn>a {
@@ -232,11 +225,18 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 #footer>.btn>a:hover {
-    color: white;
+    color: black;
 }
 
-#footer>.btn:hover {
+
+.tour-button{
+    background: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.tour-button:hover{
     background: white;
-    background: transparent;
-    text-decoration: underline;
+    color:black;
+    border: 1px solid white;
 }
