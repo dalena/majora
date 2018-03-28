@@ -462,7 +462,7 @@ b4w.register("Majora_main", function (exports, require) {
 
             m.mouse.set_plock_smooth_factor(5);
         } else {
-            canvas_elem.addEventListener("touchend", toggleScenes, false);
+            canvas_elem.addEventListener("click", toggleScenes, false);
         }
 
         // camera = m.scene.get_active_camera();
@@ -471,8 +471,6 @@ b4w.register("Majora_main", function (exports, require) {
 
         m.app.enable_camera_controls();
         m.gryo.enable_camera_rotation();
-
-
 
         $("#welcome-container").show();
         $("#welcome-container").removeClass('opacity-zero');
@@ -538,7 +536,7 @@ b4w.register("Majora_main", function (exports, require) {
     }
 
     function toggleScenes() {
-        // animOutroFadeIn();
+        animOutroFadeIn();
         if (flags.allowToggle) {
             loggy("app", "Scene toggled.")
             if (flags.playing == "outro")
