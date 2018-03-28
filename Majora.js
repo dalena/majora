@@ -684,10 +684,14 @@ b4w.register("Majora_main", function (exports, require) {
     function animIntroFadeIn(callback) {
         loggy("anim", "Intro fade-in started.");
 
+        
         m.time.clear_timeout(timeouts.animOutroFadeIn);
 
         flags.playing = "intro";
         toggleObjects("head");
+
+
+        m.cam.rotate_camera(majora.objs.cam, 0, 0, true)
 
         setDOF(true);
 
