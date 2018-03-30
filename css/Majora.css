@@ -148,7 +148,7 @@ div#preloader_cont {
 
 .form-control {
     font-family: 'Inknut Antiqua', serif;
-    font-weight: 900;
+    font-weight: 400;
     border-radius: .1rem;
     background: black;
     color: white;
@@ -182,7 +182,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .btn {
     font-family: 'Inknut Antiqua', serif;
-    font-weight: 900;
+    font-weight: 400;
     border-radius: .1rem;
     text-transform: uppercase;
     background: white;
@@ -221,7 +221,7 @@ select.form-control:not([size]):not([multiple]) {
     color: white;
     text-decoration: none;
     font-family: 'Inknut Antiqua', serif;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 #footer>.btn>a:hover {
