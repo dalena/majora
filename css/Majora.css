@@ -240,3 +240,8 @@ select.form-control:not([size]):not([multiple]) {
     color:black;
     border: 1px solid white;
 }
+
+
+.tour-button:hover > a{
+    color:black !important;
+}
