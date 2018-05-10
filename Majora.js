@@ -8,6 +8,21 @@ var glopts = {
     consoleImage: "https://static1.squarespace.com/static/523950d1e4b0eacf372043db/t/5583208ae4b0dd6ca1a4b945/1434656921780/"
 }
 
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+      sURLVariables = sPageURL.split('&'),
+      sParameterName,
+      i;
+  
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+  
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined ? true : sParameterName[1];
+      }
+    }
+  };
+
 function loggy(mode, str) {
     var color = "";
     var text = "";
@@ -346,6 +361,14 @@ b4w.register("Majora_main", function (exports, require) {
             return false;
         };
 
+        if (getUrlParameter('vj') != "true") {
+            $("#vjbutton").remove();
+        }
+        else{
+            $("#vjbutton").addClass('opacity-full');
+            $("#vjbutton").removeClass('opacity-zero');
+        }
+
         load();
 
         // Start BACKGROUND theme sound
@@ -368,7 +391,7 @@ b4w.register("Majora_main", function (exports, require) {
         }
     }
 
-    var energy
+    var energy;
 
     function renderCallback() {
         snd.rmsArrLimit = 64;
@@ -457,6 +480,8 @@ b4w.register("Majora_main", function (exports, require) {
             registerMouse();
 
             canvas_elem.addEventListener("mouseup", function (e) {
+                console.log("mouseup")
+                var canvas_elem = m.cont.get_canvas();
                 m.mouse.request_pointerlock(canvas_elem, null, null, null, null, rot_cb);
             }, false);
 
@@ -472,9 +497,14 @@ b4w.register("Majora_main", function (exports, require) {
         m.app.enable_camera_controls();
         m.gryo.enable_camera_rotation();
 
-        $("#welcome-container").show();
-        $("#welcome-container").removeClass('opacity-zero');
-        $("#welcome-container").addClass('opacity-full');
+        if (getUrlParameter('vj') != "true") {
+            $("#welcome-container").show();
+            $("#welcome-container").removeClass('opacity-zero');
+            $("#welcome-container").addClass('opacity-full');
+        }
+        else{
+            $("#welcome-container").remove();
+        }
     }
 
     function begin() {
@@ -494,11 +524,22 @@ b4w.register("Majora_main", function (exports, require) {
         }, 2000)
 
         timeouts.loadCallback = m.time.set_timeout(function () {
-            audioIntroStart();
+            if (getUrlParameter('vj') != "true"){
+                audioIntroStart();
+            }
         }, 6000);
     }
 
     exports.begin = begin;
+
+    function trackhead() {
+        begin();
+
+        $(".vj-button").remove();
+        // $("#welcome-container").addClass('opacity-zero');
+    }
+
+    exports.trackhead = trackhead;
 
     var camera_smooth_fact = 2;
     var camera_rot_fact = 5;
@@ -529,7 +570,7 @@ b4w.register("Majora_main", function (exports, require) {
             "mouse",
             m.ctl.CT_TRIGGER, [clickSensor],
             logic,
-            cb,
+            cb
         );
 
         loggy("app", "Mouse registered.")
